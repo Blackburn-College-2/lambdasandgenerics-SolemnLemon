@@ -19,14 +19,30 @@ public class Utils {
     should take 2 parameters, (1) an instance of any type and (2) an int of the
     number of times to repeat said element in an arraylist.
      */
-   
+    public static <Value> ArrayList<Value> repeat(Value x, int amount) {
+        ArrayList<Value> list = new ArrayList();
+        for (int i = 0; i < amount; i++) {
+            list.add(x);
+        }
+        return list;
+    }
 
     /*
     2. Write a function called indexedOutput that takes an ArrayList of any type
     and RETURNS a two line string where the first line is the index of each
     element.
      */
-   
+    public static <Value> String indexedOutput(ArrayList<Value> print) {
+        String end = "";
+        for (int i = 0; i < print.size(); i++) {
+            end = end + i + "   ";
+        }
+        end = end + "\n";
+        for (int i = 0; i < print.size(); i++) {
+            end = end + print.get(i) + "   ";
+        }
+        return end;
+    }
 
     /*
     3. A few steps for this one. Similar to the modify integer functionality we
@@ -36,6 +52,7 @@ public class Utils {
     (2) Write a function called modifyIntegerXTimes. This function should return
     the integer result and take 3 arguments in this order: the modifying function,
     the number of times to apply it, the starting integer to modify.
+    
     (3) Write a function called modifyIntegerXTimesTester with at least 5 asserts
     an assert statement has the form:
        assert <booleanExp> : "text describing what failed"
@@ -45,7 +62,12 @@ public class Utils {
     Here is one you can use:
          assert modifyIntegerXTimes(x -> x + 1, 5, -1) == 4 : "+1 modify test failed";
      */
-  
+    public static Integer modifyIntegerXTimesTester(IntegerModifier im, int amount, int startingValue) {
+        assert im.modifyIntegerXTimes(0, 4) == 4 : "+1 modify test failed";
+
+        return im.modifyIntegerXTimes(startingValue, amount);
+
+    }
 
     /*
     4. Write a function called checkInvolutence
@@ -78,8 +100,17 @@ public class Utils {
     Hint 2: You will need to create an interface for each arguement in
     checkInvolutence.
      */
-   
-
-  
-
+   /* public static boolean checkInvolutence(Number x, Thing y) {
+        int z = y.doMathTo(y.doMathTo(x));
+        if ((Number) z == x) {
+            return true;
+        }
+        return false;
+    }
+}*/
+public static <Value> boolean checkInvolutence( Value x, Thing y){
+    
+    y.doMathTo(y.doMathTo((Number)x));
+    return true;
+    }
 }
